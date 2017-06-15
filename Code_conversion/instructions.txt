@@ -1,0 +1,3 @@
+I don't known the difference between Python2.x and Python3.x.My python is 3.x.But I always struggle with character encoding of python2.x.
+Now,I known it.And I write a small tool to change character encoding.
+In function,you can input character of str or unicode,to_str can change character to str,and to change character to unicode.

@@ -1,0 +1,3 @@
+As first,I must say,this is not my original.This is referential to others.It can turn your photo into Hand tracing.I think it's very interesting,so I collect it.
+"python changeph.py pthoto_name save_pthoto_name"
+for example: python changeph.py top.jpg top2.jpg
