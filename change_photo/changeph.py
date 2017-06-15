@@ -1,6 +1,7 @@
 from PIL import Image
 import numpy as np
-a = np.asarray(Image.open('bg.jpeg').convert('L')).astype('float')
+import sys
+a = np.asarray(Image.open(sys.argv[1]).convert('L')).astype('float')
 depth = 10.
 grad = np.gradient(a)
 grad_x,grad_y = grad
@@ -18,4 +19,4 @@ dz = np.sin(vec_el)
 b = 255 * (dx * uni_x + dy * uni_y + dz * uni_z)
 b = b.clip(0, 255)
 im = Image.fromarray(b.astype('uint8'))
-im.save('bg2.jpeg')
+im.save(sys.argv[2])
