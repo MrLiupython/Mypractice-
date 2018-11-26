@@ -1,7 +1,7 @@
 #include <iostream>
 #include <iomanip>
 #include <stdlib.h>
-#include <conio.h>
+#include <stdio.h>
 #include <string.h>
 #include <fstream>
 #include "Book.h"
@@ -48,7 +48,7 @@ void WaitUser() {
   int iInputPage = 0;
   cout << "enter(Menu) q(quit)" << endl;
   char buf[256];
-  gets(bug);
+  gets(buf);
   if (buf[0] == "q")
     system("exit")
 }
@@ -101,6 +101,17 @@ void GuideInput() {
   WaitUser();
 }
 
+void WaitView(int iCurPage) {
+  char buf[256];
+  gets(buf);
+  if (buf[0] == 'q')
+    system("exit");
+  if (buf[0] == 'm')
+    mainloop();
+  if (buf[0] == 'n')
+     ViewData(iCurPage);
+}
+
 void ViewData(int iSelPage = 1) {
   int iPage = 0;
   int iCurPage = 0;
@@ -115,7 +126,7 @@ void ViewData(int iSelPage = 1) {
   ifstream ifile;
   ifile.open("book.dat", ios::binary);
   iFileLength = GetFileLength(ifile);
-  iDataCount = iFielLength/(NUM1*2 + num2*2)
+  iDataCount = iFielLength/(NUM1*2 + NUM2*2)
   if (iDataCount >= 1)
     bIndex = tree;
   iPage = iDataCount / 20 + 1;
@@ -185,23 +196,12 @@ void DeleteBookFromFile() {
   cin >> iDelCount;
   CBook tmpbook;
   tmpbook.DeleteData(iDelCount);
-  cout << 'Delete Finish" << endl;
+  cout << "Delete Finish" << endl;
   WaitUser();
 }
 
-void WaitView(int iCurPage) {
-  char buf[256];
-  gets(buf);
-  if (buf[0] == 'q')
-    system("exit");
-  if (buf[0] == 'm')
-    mainloop();
-  if (buf[0] == 'n')
-     ViewData(iCurPage);
-}
-
-void main() {
+int main() {
   SetScreenGrid();
-  SetSysCaption("Book Manage System");
+  SetSysCaption();
   mainloop();
 }

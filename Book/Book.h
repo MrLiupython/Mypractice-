@@ -16,7 +16,7 @@ class CBook {
   void SetAuthor(char* cAuthor);
   void WriteData();
   void DeleteData(int iCount);
-  void GetBookFromeFile(int iCount);
+  void GetBookFromFile(int iCount);
  protected:
   char m_cName[NUM1];
   char m_cIsbn[NUM1];
