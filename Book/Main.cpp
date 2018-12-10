@@ -49,10 +49,13 @@ void WaitUser() {
   cout << "enter(Menu) q(quit)" << endl;
   char buf[256];
   gets(buf);
-  if (buf[0] == "q")
-    system("exit")
+  if (buf[0] == 'q')
+    system("exit");
 }
 
+int GetSelect();
+void GuideInput();
+void ViewData(int i = 1);
 void mainloop() {
   ShowWelcome();
   while (1) {
@@ -126,9 +129,9 @@ void ViewData(int iSelPage = 1) {
   ifstream ifile;
   ifile.open("book.dat", ios::binary);
   iFileLength = GetFileLength(ifile);
-  iDataCount = iFielLength/(NUM1*2 + NUM2*2)
+  iDataCount = iFileLength/(NUM1*2 + NUM2*2);
   if (iDataCount >= 1)
-    bIndex = tree;
+    bIndex = true;
   iPage = iDataCount / 20 + 1;
   ClearScreen();
   cout << " total record" << iDataCount << " ";
@@ -167,7 +170,7 @@ void ViewData(int iSelPage = 1) {
   }
   catch(...) {
     cout << "throw file exception" << endl;
-    trow "file error occurred";
+    throw "file error occurred";
     ifile.close();
   }
   if (iCurPage < iPage) {
@@ -182,10 +185,10 @@ void ViewData(int iSelPage = 1) {
 
 long GetFileLength(ifstream & ifs) {
   long tmppos;
-  long respose;
+  long respos;
   tmppos = ifs.tellg();
   ifs.seekg(0, ios::end);
-  respose = ifs.tellg();
+  respos = ifs.tellg();
   ifs.seekg(tmppos, ios::beg);
   return respos;
 }

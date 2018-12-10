@@ -1,5 +1,5 @@
 #include "Book.h"
-#include <string>
+#include <string.h>
 #include <fstream>
 #include <iostream>
 using namespace std;
@@ -22,7 +22,7 @@ char* CBook::GetIsbn() {
   return m_cIsbn;
 }
 
-void CBook::SetIsbn() {
+void CBook::SetIsbn(char* cIsbn) {
   strncpy(m_cIsbn, cIsbn, NUM1);
 }
 
@@ -83,7 +83,7 @@ void CBook::DeleteData(int iCount) {
     file.close();
     tmpfile.seekg(0, ios::beg);
     ofile.open("book.dat");
-    ofile.seekg((iCount-1) * (NUM1+NUM1+NUM2+NUM2), ios::beg);
+    ofile.seekp((iCount-1) * (NUM1+NUM1+NUM2+NUM2), ios::beg);
     for (int j=0; j < (iDataCount - iCount); j++) {
       memset(cTempBuf, 0, NUM1+NUM1+NUM2+NUM2);
       tmpfile.read(cTempBuf, NUM1+NUM1+NUM2+NUM2);
@@ -103,7 +103,7 @@ void CBook::GetBookFromFile(int iCount) {
   ifstream ifile;
   ifile.open("book.dat", ios::binary);
   try {
-    ifile.seekg(iCount * (NUM1+NUM1+NUM2+NUM2);
+    ifile.seekg(iCount * (NUM1+NUM1+NUM2+NUM2));
     ifile.read(cAuthor, NUM2);
     if (ifile.tellg() > 0)
       strncpy(m_cAuthor, cAuthor, NUM2);
