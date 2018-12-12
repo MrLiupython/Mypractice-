@@ -6,6 +6,21 @@
 #include <fstream>
 #include "Book.h"
 using namespace std;
+
+void SetScreenGrid();
+void SetSysCaption();
+void ClearScreen();
+void ShowWelcome();
+void ShowRootMenu();
+void WaitUser();
+void WaitView(int);
+void mainloop();
+int GetSelect();
+void GuideInput();
+void ViewData(int iSelPage = 1);
+long GetFileLength(ifstream &);
+void DeleteBookFromFile();
+
 void SetScreenGrid() {
   cout << "Sorry! It's not compile." << endl;
 }
@@ -53,9 +68,6 @@ void WaitUser() {
     system("exit");
 }
 
-int GetSelect();
-void GuideInput();
-void ViewData(int i = 1);
 void mainloop() {
   ShowWelcome();
   while (1) {
@@ -73,7 +85,7 @@ void mainloop() {
         break;
       case 3:
         ClearScreen();
-        DeleteBookFromeFile();
+        DeleteBookFromFile();
         break;
     }
   }
@@ -115,7 +127,7 @@ void WaitView(int iCurPage) {
      ViewData(iCurPage);
 }
 
-void ViewData(int iSelPage = 1) {
+void ViewData(int iSelPage) {
   int iPage = 0;
   int iCurPage = 0;
   int iDataCount = 0;
@@ -155,7 +167,7 @@ void ViewData(int iSelPage = 1) {
         ifile.read(inName, NUM1);
         cout << setw(24) << inName;
         ifile.read(inIsbn, NUM1);
-        cout << setw(12) << inIsbn;
+        cout << setw(24) << inIsbn;
         ifile.read(price, NUM2);
         cout << setw(12) << price;
         ifile.read(inAuthor, NUM2);
